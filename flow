@@ -7,6 +7,12 @@ restart node on file save
 npm  i -g supervisor then supervisor server.js
 
 second choice (better)  nodemon
-np i -g nodemon
+npm i -g nodemon
 nodemon server.js
-or nodemon ./server.js localhost 8080
+or 
+nodemon ./server.js localhost 8080
+//pure node middleware
+//https://www.reddit.com/r/node/comments/pdgu7x/how_to_work_with_middleware_with_pure_node/
+
+"Hello world"
+

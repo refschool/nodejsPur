@@ -1,0 +1,16 @@
+{
+  "name": "tutonodepur",
+  "version": "1.0.0",
+  "description": "tuto node pur js",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "yvon huynh",
+  "license": "ISC",
+  "dependencies": {
+    "mysql2": "^3.3.1",
+    "sequelize": "^6.11.0"
+  }
+}

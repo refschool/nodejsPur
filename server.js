@@ -1,5 +1,14 @@
 const http = require('http')
 const url = require('url')
+const Sequelize = require('sequelize')
+
+const seq = new Sequelize('disco', 'root', '', { host: '127.0.0.1', dialect: 'mysql' })
+
+seq.authenticate().then(() => {
+    console.log('connection success')
+}).catch((error) => {
+    console.error('Unable to connect ot database, error')
+})
 
 const server = http.createServer((req, res) => {
 
@@ -10,8 +19,8 @@ const server = http.createServer((req, res) => {
         console.log(tab)
         if (tab[1] === 'project') {
 
-            console.log(requrl.pathname)
-            console.log(requrl.query)
+            console.log('pathname = ', requrl.pathname)
+            console.log('query = ', requrl.query)
             res.setHeader('Content-type', 'text/html')
             res.end('Project id= ' + JSON.stringify(tab[2]))
 
