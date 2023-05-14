@@ -1,5 +1,6 @@
+// reverse engineer https://chineduorie.com/posts/how-to-use-sequelize-on-an-existing-database
+//https://www.digitalocean.com/community/tutorials/how-to-use-sequelize-with-node-js-and-mysql
 const { Sequelize, DataTypes } = require("sequelize");
-
 const sequelize = new Sequelize('disco', 'root', '', { host: '127.0.0.1', dialect: 'mysql' })
 
 sequelize.authenticate().then(() => {
@@ -22,34 +23,48 @@ const Album = sequelize.define("disques", {
     }
 }, { timestamps: false });
 
-sequelize.sync().then(() => {
-    console.log('Book table created successfully!');
-    //    Album.findAll().then((res) => {
-    //        console.log("resultats", res)
-    //    })
+//sequelize.sync().then(() => {
+//  console.log('Book table created successfully!');
+//    Album.findAll().then((res) => {
+//        console.log("resultats", res)
+//    })
 
 
-    // WHERE
-    // find with Where
-    //Album.findOne({
-    //    where: {
-    //        id: "4"
-    //    }
+// WHERE
+// find with Where
+//Album.findOne({
+//    where: {
+//        id: "4"
+//    }
 
-    //// DELETE
-    //Album.destroy({
-    //    where: {
-    //        id: "14"
-    //    }
-    // CREATE
-    Album.create({
-        album: "American Idiot",
-        artiste: "Greenday",
-        genre: 6
+//// DELETE
+//Album.destroy({
+//    where: {
+//        id: "14"
+//    }
+// CREATE
+//    Album.create({
+//        album: "American Idiot",
+//        artiste: "Greenday",
+//        genre: 6
+//    }
+//    ).then((res) => {
+//        console.log("resultats", res)
+//    })
+//}).catch((error) => {
+//    console.error('Unable to select data : ', error);
+//});
+//
+
+//raw query
+sequelize.query(
+    "SELECT * FROM disques WHERE id = ?",
+    {
+        replacements: ['7'],
+        type: sequelize.QueryTypes.SELECT
     }
-    ).then((res) => {
-        console.log("resultats", res)
-    })
+).then(res => {
+    console.log('resultat ', res)
 }).catch((error) => {
-    console.error('Unable to select data : ', error);
-});
+    console.error('Failed to select data', error)
+})
